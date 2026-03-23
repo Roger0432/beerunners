@@ -1,14 +1,15 @@
-import { useState } from 'react'
-import './App.css'
+import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      
-    </>
-  )
+    return (
+        <>
+            <div className="flex justify-center">
+                <div className="w-150 border-4 border-gray-500">
+                    Centrat perfecte
+                </div>
+            </div>
+        </>
+    );
 }
 
-export default App
+export default App;
