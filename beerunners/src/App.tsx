@@ -75,7 +75,7 @@ function App() {
 
             {/* Modal per afegir cerveses */}
             {isModalOpen && (
-                <div className="fixed inset-0 bg-gray-900 bg-opacity-5 flex justify-center items-end z-50" onClick={() => setIsModalOpen(false)}>
+                <div className="fixed inset-0 flex justify-center items-end z-50" onClick={() => setIsModalOpen(false)}>
                     <div className="bg-gray-800 rounded-t-lg shadow-lg border border-gray-700 p-6 w-full max-w-sm mx-4 mb-4" onClick={(e) => e.stopPropagation()}>
                         <h2 className="text-xl font-bold text-white mb-6 text-center">🍺 Afegir Cerveses</h2>
                         
@@ -143,7 +143,7 @@ function App() {
 
             {/* Modal per afegir quilòmetres */}
             {isKmModalOpen && (
-                <div className="fixed inset-0 flex justify-center items-end z-50" onClick={() => setIsKmModalOpen(false)}>
+                <div className="fixed inset-0 bg-gray-900 bg-opacity-10 flex justify-center items-end z-50" onClick={() => setIsKmModalOpen(false)}>
                     <div className="bg-gray-800 rounded-t-lg shadow-lg border border-gray-700 p-6 w-full max-w-sm mx-4 mb-4" onClick={(e) => e.stopPropagation()}>
                         <h2 className="text-xl font-bold text-white mb-6 text-center">🏃 Afegir Quilòmetres</h2>
                         
