@@ -3,8 +3,8 @@ import { useState } from 'react';
 
 function App() {
 
-    const [cerveses , setCerveses] = useState(0);
-    const [kms, setKms] = useState(0);
+    const [cerveses, setCerveses] = useState<number>(0);
+    const [kms, setKms] = useState<number>(0);
 
     return (
         <>
@@ -36,7 +36,7 @@ function App() {
                     <div className="text-center rounded p-5 bg-red-100 w-full">
                         <div className="text-3xl sm:text-4xl text-red-500 font-bold">
                             {kms - cerveses}
-                        </div>
+                        </div>  
                         <div className="text-gray-500">
                             {kms - cerveses > 0 ? (
                                     <div>🍻 Has de beure {Math.abs(kms - cerveses)} cerveses</div>
@@ -48,18 +48,18 @@ function App() {
                         </div>
                     </div>
 
-                    {/* comtadors */}
+                    {/* comptadors */}
                     <div className="flex flex-col sm:flex-row gap-4 justifiy-center">
 
-                        <div className="flex justify-center items-center rounded p-5 bg-yellow-100 w-full sm:w-1/2 cursor-pointer">
+                        <button className="flex justify-center items-center rounded p-5 bg-yellow-100 w-full sm:w-1/2 cursor-pointer" onClick={() => setCerveses(cerveses + 1)}>
                             <div className="text-4xl">🍺</div>
                             <div className="text-2xl text-gray-500 font-bold">Cervesa</div>
-                        </div>
+                        </button>
 
-                        <div className="flex justify-center items-center rounded p-5 bg-blue-100 w-full sm:w-1/2 cursor-pointer">
+                        <button className="flex justify-center items-center rounded p-5 bg-blue-100 w-full sm:w-1/2 cursor-pointer" onClick={() => setKms(kms + 1)}>
                             <div className="text-4xl">🏃</div>
                             <div className="text-2xl text-gray-500 font-bold">Córrer</div>
-                        </div>
+                        </button>
 
                     </div>
 
