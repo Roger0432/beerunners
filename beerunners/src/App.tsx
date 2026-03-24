@@ -9,6 +9,7 @@ function App() {
     const [localBeerCount, setLocalBeerCount] = useState<number>(0);
     const [isKmModalOpen, setIsKmModalOpen] = useState<boolean>(false);
     const [localKmCount, setLocalKmCount] = useState<number>(0);
+    const [history, setHistory] = useState<Array<{type: 'beer' | 'km', amount: number, timestamp: Date}>>([]);
 
     return (
         <>
@@ -49,6 +50,49 @@ function App() {
                                 ) : (
                                     <div>⚖️ Equilibri perfecte </div>
                                 )}
+                        </div>
+                    </div>
+
+                    {/* historial de sumes i restes */}
+                    <div className="rounded p-5 bg-gray-100 w-full">
+                        <div className="text-lg font-bold text-gray-700 mb-3">📝 Historial</div>
+                        <div className="max-h-40 overflow-y-auto">
+                            {history.length === 0 ? (
+                                <div className="text-gray-500 text-center">Encara no hi ha activitats</div>
+                            ) : (
+                                history.slice().reverse().map((entry, index) => (
+                                    <div key={index} className="flex justify-between items-center py-2 border-b border-gray-200 last:border-b-0">
+                                        <div className="flex items-center gap-2">
+                                            <span className="text-2xl">{entry.type === 'beer' ? '🍺' : '🏃'}</span>
+                                            <span className="text-gray-700">
+                                                +{entry.amount} {entry.type === 'beer' ? 'cerveses' : 'quilòmetres'}
+                                            </span>
+                                        </div>
+                                        <div className="flex items-center gap-2">
+                                            <div className="text-sm text-gray-500">
+                                                {entry.timestamp.toLocaleDateString('ca-ES')} {entry.timestamp.toLocaleTimeString('ca-ES', { 
+                                                    hour: '2-digit', 
+                                                    minute: '2-digit' 
+                                                })}
+                                            </div>
+                                            <button 
+                                                className="text-red-500 hover:text-red-700 text-lg transition-colors duration-200"
+                                                onClick={() => {
+                                                    if (entry.type === 'beer') {
+                                                        setCerveses(prev => Math.max(0, prev - entry.amount));
+                                                    } else {
+                                                        setKms(prev => Math.max(0, prev - entry.amount));
+                                                    }
+                                                    setHistory(prev => prev.filter((_, i) => i !== history.length - 1 - index));
+                                                }}
+                                                aria-label="Eliminar entrada"
+                                            >
+                                                🗑️
+                                            </button>
+                                        </div>
+                                    </div>
+                                ))
+                            )}
                         </div>
                     </div>
 
@@ -120,12 +164,13 @@ function App() {
                                 className="flex-1 bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-3 rounded transition-colors duration-200" 
                                 onClick={() => { 
                                     setCerveses(cerveses + localBeerCount); 
+                                    setHistory(prev => [...prev, {type: 'beer', amount: localBeerCount, timestamp: new Date()}]);
                                     setIsModalOpen(false); 
                                     setLocalBeerCount(0); 
                                 }}
                                 disabled={localBeerCount === 0}
                             >
-                                Afegir
+                                Afegir {localBeerCount} cerveses
                             </button>
                             <button 
                                 className="flex-1 bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 rounded transition-colors duration-200" 
@@ -143,7 +188,7 @@ function App() {
 
             {/* Modal per afegir quilòmetres */}
             {isKmModalOpen && (
-                <div className="fixed inset-0 bg-gray-900 bg-opacity-10 flex justify-center items-end z-50" onClick={() => setIsKmModalOpen(false)}>
+                <div className="fixed inset-0 flex justify-center items-end z-50" onClick={() => setIsKmModalOpen(false)}>
                     <div className="bg-gray-800 rounded-t-lg shadow-lg border border-gray-700 p-6 w-full max-w-sm mx-4 mb-4" onClick={(e) => e.stopPropagation()}>
                         <h2 className="text-xl font-bold text-white mb-6 text-center">🏃 Afegir Quilòmetres</h2>
                         
@@ -188,12 +233,13 @@ function App() {
                                 className="flex-1 bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 rounded transition-colors duration-200" 
                                 onClick={() => { 
                                     setKms(kms + localKmCount); 
+                                    setHistory(prev => [...prev, {type: 'km', amount: localKmCount, timestamp: new Date()}]);
                                     setIsKmModalOpen(false); 
                                     setLocalKmCount(0); 
                                 }}
                                 disabled={localKmCount === 0}
                             >
-                                Afegir
+                                Afegir {localKmCount} quilòmetres
                             </button>
                             <button 
                                 className="flex-1 bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 rounded transition-colors duration-200" 
