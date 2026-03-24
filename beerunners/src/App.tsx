@@ -17,16 +17,16 @@ function App() {
                     </div>
 
                     {/* comptadors */}
-                    <div className="flex flex-col sm:flex-row gap-4 justifiy-center">
+                    <div className="flex flex-row gap-4 justify-center">
                         
                         {/* comptador de cerveses */}
-                        <div className="text-center flex flex-col rounded p-5 bg-yellow-100 w-full sm:w-1/2">
+                        <div className="text-center flex flex-col rounded p-5 bg-yellow-100 w-1/2">
                             <div className="text-yellow-500 font-bold text-3xl sm:text-4xl">{cerveses}</div>
                             <div className="text-gray-500">Cerveses</div>
                         </div>
 
                         {/* comptador de kms */}
-                        <div className="text-center flex flex-col rounded p-5 bg-blue-100 w-full sm:w-1/2">
+                        <div className="text-center flex flex-col rounded p-5 bg-blue-100 w-1/2">
                             <div className="text-blue-500 font-bold text-3xl sm:text-4xl">{kms}</div>
                             <div className="text-gray-500">Quilòmetres</div>
                         </div>
@@ -49,16 +49,16 @@ function App() {
                     </div>
 
                     {/* comptadors */}
-                    <div className="flex flex-col sm:flex-row gap-4 justifiy-center">
+                    <div className="flex flex-row gap-4 justify-center">
 
-                        <button className="flex justify-center items-center rounded p-5 bg-yellow-100 w-full sm:w-1/2 cursor-pointer" onClick={() => setCerveses(cerveses + 1)}>
+                        <button className="flex justify-center items-center rounded p-5 bg-yellow-100 w-1/2 cursor-pointer" onClick={() => setCerveses(cerveses + 1)}>
                             <div className="text-4xl">🍺</div>
-                            <div className="text-2xl text-gray-500 font-bold">Cervesa</div>
+                            <div className="text-xl text-gray-500 font-bold">Cervesa</div>
                         </button>
 
-                        <button className="flex justify-center items-center rounded p-5 bg-blue-100 w-full sm:w-1/2 cursor-pointer" onClick={() => setKms(kms + 1)}>
+                        <button className="flex justify-center items-center rounded p-5 bg-blue-100 w-1/2 cursor-pointer" onClick={() => setKms(kms + 1)}>
                             <div className="text-4xl">🏃</div>
-                            <div className="text-2xl text-gray-500 font-bold">Córrer</div>
+                            <div className="text-xl text-gray-500 font-bold">Córrer</div>
                         </button>
 
                     </div>
